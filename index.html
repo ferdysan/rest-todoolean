@@ -4,19 +4,27 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
 
     <h1>Inserisci un nuovo Todo</h1>
+
     <input id="new_todo" type="text" name="" value="" placeholder="che devi fare?">
-    <button type="button" name="button">crea nuovo</button>
+
+    <button id="bottone_crea" type="button" name="button">crea nuovo</button>
 
     <ul id="todos">
+
 
     </ul>
 
 
+    <script id="template_todo" type="text/x-handlebars-template">
+      <li>{{new_todo}}<li>
+    </script>
 
     <script src="main.js">
 
