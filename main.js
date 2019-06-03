@@ -3,6 +3,8 @@
 
 $(document).ready(function(){
 
+  // integro handlebars
+
   var template_html = $('#template_todo').html();
   var template_function = Handlebars.compile(template_html);
 
@@ -10,6 +12,7 @@ $(document).ready(function(){
    var url_base= 'http://157.230.17.132:3009/todos/';
 
    stampa_impegni();
+
 
    $('#bottone_crea').click(function(){
      var todo_text = $('#new_todo').val();
@@ -34,15 +37,52 @@ $(document).ready(function(){
 
    });
 
+   // FUNZIONE CHE AL CLICK MI CANCELLA IL MIO IMPEGNO
+
    $('#todos').on('click', 'span', function(){
      // vado a selezionare tramite l'attributo data impostato nel metodo get l'elemento selezionato
      var id_deleter = $(this).attr('data-id');
 
+     $.ajax({
+       'url' :url_base + id_deleter ,
+       'method': 'DELETE',
+       'success': function(data){
+           stampa_impegni();
+       },
+       'error': function(){
+         alert('qualcosa è andato storto')
+       }
+     });
 
    });
 
+   // intercetto click su pulsante di modifica
+
+   $('#click_mod_todo').click(function(){
+     // prendo il valore inserito dall'utente
+     var mod_todo = $('#mod_todo').val();
+     // prendo l'id della select presa dall'utente
+     var edit_todo_id=$('.impegni_mod').val();
+
+     $('#mod_todo').val('');
 
 
+     $.ajax({
+       'url' :url_base + edit_todo_id,
+       'method': 'PUT',
+       'data':{
+         'text':mod_todo
+       },
+       'success': function(data){
+           stampa_impegni();
+       },
+       'error': function(){
+         alert('qualcosa è andato storto')
+       }
+     });
+
+
+   });
 
   //  creo una funzione da riutilizzare in varie parti del codice
 
@@ -55,6 +95,7 @@ $(document).ready(function(){
        'success': function(data){
          for (var i = 0; i < data.length; i++) {
            $('#todos').append('<li><span data-id="'+data[i].id+'">x</span>' + data[i].text  + '</li>');
+           $('.impegni_mod').append('<option value="'+data[i].id+'">' +data[i].text+ '</option>');
            // var new_todo = data[i].text;
            // $('#todos').append(template_function(new_todo));
          }
