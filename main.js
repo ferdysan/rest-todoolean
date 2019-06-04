@@ -88,7 +88,8 @@ $(document).ready(function(){
 
    function stampa_impegni(){
      $('#todos').empty();
-
+     $('.impegni_mod').empty();
+     
      $.ajax({
        'url' :url_base,
        'method': 'GET',

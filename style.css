@@ -1,0 +1,31 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container_impegni{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.container_impegni ul{
+  background-color: #fff3ab;
+  padding: 50px;
+}
+
+.container_impegni ul li{
+  list-style-type: none;
+  min-height: 20px;
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+}
+
+.container_impegni ul li span{
+  padding: 10px;
+  cursor: pointer;
+}
